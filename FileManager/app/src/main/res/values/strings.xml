@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">FileManager</string>
+    <string name="LocalRootPath">File Manager</string>
+    <string name="LocalDownloadFolder">Download Files</string>
+    <string name="LocalConfigFolder">Config</string>
+    <string name="LocalFile_Config">cfg</string>
+    <string name="LocalFile_Score">sco</string>
+</resources>
