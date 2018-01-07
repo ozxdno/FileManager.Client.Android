@@ -1,15 +1,17 @@
 package ozxdno.filemanager.Model;
 
+import ozxdno.filemanager.Resource.Enums;
+
 /**
  * Created by ozxdn on 2018/01/06.
  */
 
 public class UserModel {
-    /*
+    /**
 	 * unique
 	 */
     private long index;
-    /*
+    /**
      * unique, used to log in
      */
     private String loginName;
@@ -21,14 +23,11 @@ public class UserModel {
      * pw
      */
     private String password;
-    /*
-     * ip addresses
+    /**
+     * 00 - 未登录
+     * 01 - 在线
      */
-    private String ipv4;
-    /*
-     * port
-     */
-    private int port;
+    private int state;
     /*
      * -1 - this user does not exist.
      * 00 - cannot do anything refer to remote resource.
@@ -85,6 +84,9 @@ public class UserModel {
     public double getMoney() {
         return money;
     }
+    public int getState() {
+        return state;
+    }
 
     public boolean setIndex(long index) {
         if(index < 0) {
@@ -114,7 +116,17 @@ public class UserModel {
         this.password = password;
         return true;
     }
+    public boolean setState(int state) {
+        if(state > 1) {
+            return false;
+        }
+        this.state = state;
+        return true;
+    }
 
+    public UserModel() {
+        clear();
+    }
     public UserModel(String loginName, String password) {
         init(loginName,password);
     }
@@ -130,6 +142,7 @@ public class UserModel {
         photoUrl = "";
         coins = 0;
         money = 0.0;
+        state = Enums.UserState_Offline;
     }
     public int register() {
         return -1;

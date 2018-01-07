@@ -8,13 +8,13 @@ import ozxdno.filemanager.Tools.*;
 
 public final class Manager {
     public final static String RootPath = "File Manager";
-    public final static String ConfigPath = RootPath + "\\config";
-    public final static String SynchroPath = RootPath + "synchro";
-    public final static String PrivatePath = RootPath + "private";
+    public final static String ConfigPath = RootPath + "/config";
+    public final static String SynchroPath = RootPath + "/synchro";
+    public final static String PrivatePath = RootPath + "/private";
     public final static String ConfigFile = "config";
     public final static String ScoreFile = "score";
 
-    public static boolean createFoldersAndFiles(){
+    public static boolean synchroLocal(){
         if(!ozxdno.filemanager.Tools.SDCard.exists()){
             return false;
         }
@@ -25,12 +25,12 @@ public final class Manager {
         ok &= SDCard.createFolder(SynchroPath);
         ok &= SDCard.createFolder(PrivatePath);
 
-        ok &= SDCard.createFile(ConfigPath + "\\" + ConfigFile);
-        ok &= SDCard.createFile(ConfigPath + "\\" + ScoreFile);
+        ok &= SDCard.createFile(ConfigPath + "/" + ConfigFile);
+        ok &= SDCard.createFile(ConfigPath + "/" + ScoreFile);
 
         return ok;
     }
-    public static boolean synchroFolders() {
+    public static boolean synchroRemote() {
         return false;
     }
 }

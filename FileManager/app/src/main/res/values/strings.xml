@@ -5,4 +5,5 @@
     <string name="LocalConfigFolder">Config</string>
     <string name="LocalFile_Config">cfg</string>
     <string name="LocalFile_Score">sco</string>
+    <string name="TextSize">16sp</string>
 </resources>

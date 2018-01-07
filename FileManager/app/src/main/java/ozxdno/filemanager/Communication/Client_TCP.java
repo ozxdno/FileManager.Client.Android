@@ -3,6 +3,8 @@ package ozxdno.filemanager.Communication;
 import java.net.*;
 import java.io.*;
 
+import ozxdno.filemanager.Model.ConfigModel;
+
 /**
  * Created by ozxdn on 2018/01/06.
  */
@@ -12,8 +14,7 @@ public class Client_TCP {
     private static int port;
     private final static int maxport = 65535;
     private final static int minport = 10000;
-    private static Accept_TCP accept;
-    private static boolean started = false;
+    private Accept_TCP accept;
 
     public static InetAddress getInetAddress() {
         try {
@@ -25,9 +26,6 @@ public class Client_TCP {
     }
     public static int getPort() {
         return port;
-    }
-    public static boolean isStarted() {
-        return started;
     }
 
     public static boolean setIp(String ip) {
@@ -46,13 +44,9 @@ public class Client_TCP {
         Client_TCP.port = port;
         return true;
     }
-    protected static boolean setStarted(boolean started) {
-        Client_TCP.started = started;
-        return true;
-    }
 
-    public static boolean start() {
-        if(started) {
+    public boolean start() {
+        if(isRunning()) {
             return true;
         }
         clear();
@@ -60,30 +54,30 @@ public class Client_TCP {
         accept.start();
         return true;
     }
-    public static boolean restart() {
+    public boolean restart() {
         clear();
         accept = new Accept_TCP();
         accept.start();
         return true;
     }
-    public static void stop() {
+    public void stop() {
         if(accept != null) {
             accept.myAbort();
         }
     }
-    public static void clear() {
+    public void clear() {
         ip = "192.168.191.1";
+        //ip = "172.24.136.41";
         port = maxport;
         accept = null;
-        started = false;
     }
-    public static boolean send(String str) {
+    public boolean send(String str) {
         if(accept == null) {
             return false;
         }
         return accept.setSendStr(str);
     }
-    public static String receive() {
+    public String receive() {
         if(accept == null) {
             return null;
         }
@@ -94,6 +88,24 @@ public class Client_TCP {
             return false;
         }
         return accept.isRunning();
+    }
+    public boolean sleep() {
+        try {
+            accept.wait();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+            return false;
+        }
+    }
+    public boolean wake() {
+        try {
+            accept.notify();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+            return false;
+        }
     }
 }
 
@@ -107,6 +119,7 @@ class Accept_TCP extends Thread {
     private byte[] sendbyte;
     private boolean abort;
     private boolean running;
+    private ConfigModel config;
 
     public String getRecestr() {
         String ret = recestr;
@@ -135,16 +148,24 @@ class Accept_TCP extends Thread {
             recestream =  new DataInputStream(client.getInputStream());
         } catch (Exception e) {
             System.out.println(e.getCause());
-            Client_TCP.setStarted(false);
             return;
         }
 
         running = true;
-        Client_TCP.setStarted(true);
         while (!abort) {
-            if(send()) {
-                receive();
-                setSendStr(getRecestr());
+            if(sendstr == null || sendstr.length() == 0) {
+                continue;
+            }
+
+            config = new ConfigModel(sendstr);
+
+            if(config.getField().equals("login")) {
+                if(!send()) { recestr = "login = 1"; } else {
+                    if(receive() == null) { recestr = "login = 2"; }
+                }
+            }
+            if(config.getField().equals("register")) {
+
             }
         }
         running = false;
@@ -159,7 +180,7 @@ class Accept_TCP extends Thread {
         sendstr = "";
         sendbyte = null;
         abort = false;
-        running = false;
+        running = true;
     }
     public void myAbort() {
         try {
@@ -181,6 +202,7 @@ class Accept_TCP extends Thread {
     public boolean isRunning() {
         return running;
     }
+
     private boolean send() {
         if(sendstr == null || sendstr.length() == 0) {
             return false;
@@ -194,6 +216,7 @@ class Accept_TCP extends Thread {
         try {
             sendbyte = sendstr.getBytes();
             sendstream.write(sendbyte);
+            sendstr = "";
             return true;
         } catch (Exception e) {
             System.out.println(e.getCause());
@@ -208,6 +231,10 @@ class Accept_TCP extends Thread {
             return null;
         }
         try {
+            for(int i=0; i<recebyte.length; i++){
+                recebyte[i] = 0;
+            }
+            recestream = new DataInputStream(client.getInputStream());
             recestream.read(recebyte);
             int len = 0;
             for(int i=0; i<recebyte.length; i++) {
@@ -223,7 +250,7 @@ class Accept_TCP extends Thread {
                 len++;
             }
             //recestr = new String(recebyte,0,len, "GB2312");
-            recestr = new String(recebyte,0,len, "UTF-8");
+            recestr = new String(recebyte,0,len);
             return recestr;
         } catch (Exception e) {
             System.out.println(e.getCause());

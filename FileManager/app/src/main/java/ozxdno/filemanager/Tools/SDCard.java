@@ -44,7 +44,13 @@ public class SDCard {
         if(folder.exists() && folder.isDirectory()) {
             return true;
         }
-        return folder.mkdir();
+        try {
+            return folder.mkdirs();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
     }
     public static boolean existsFile(String url) {
         if(!exists()) {
