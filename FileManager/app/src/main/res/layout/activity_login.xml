@@ -41,7 +41,7 @@
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/loginPassword"
-                    android:text="Password"
+                    android:text="··········"
                     android:textSize="12sp"
                     android:textColor="@color/colorBlack"/>
             </LinearLayout>
@@ -61,7 +61,7 @@
                     android:layout_width="100dp"
                     android:layout_height="20dp"
                     android:id="@+id/rememberUser"
-                    android:text="remember"
+                    android:text="Remember"
                     android:textSize="12sp"
                     android:textColor="@color/colorBlack"/>
             </LinearLayout>
@@ -73,7 +73,7 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/registerBtn"
-                    android:text="register"
+                    android:text="Register"
                     android:textSize="12sp"
                     android:textColor="@color/colorBlack"
                     android:layout_marginRight="10dp"/>
@@ -81,7 +81,7 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/fogortBtn"
-                    android:text="forgot"
+                    android:text="Forgot"
                     android:textSize="12sp"
                     android:textColor="@color/colorBlack"/>
             </LinearLayout>

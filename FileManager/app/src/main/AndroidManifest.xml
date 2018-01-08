@@ -24,6 +24,9 @@
         <activity android:name=".Activities.PictureActivity">
 
         </activity>
+        <activity android:name=".Activities.RegisterActivity">
+
+        </activity>
 
     </application>
 

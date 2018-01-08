@@ -35,6 +35,7 @@ public class LoginActivity extends Activity {
     private int loginState = -2;
     private Button login;
     private Button offline;
+    private Button register;
     private Client_CMD cmd;
 
 
@@ -47,9 +48,11 @@ public class LoginActivity extends Activity {
         password = (EditText)findViewById(R.id.loginPassword);
         login = (Button)findViewById(R.id.loginBtn);
         offline = (Button)findViewById(R.id.offlineBtn);
+        register = (Button)findViewById(R.id.registerBtn);
 
         login.setOnClickListener(Click_LoginBtn);
         offline.setOnClickListener(Click_OfflineBtn);
+        register.setOnClickListener(Click_Register);
     }
 
     public void onResume() {
@@ -70,7 +73,8 @@ public class LoginActivity extends Activity {
             if(loginState == 0) {
                 login.setText("Successed");
                 Users.setCurrentUser(new UserModel(name.getText().toString(),password.getText().toString()));
-                nextActivity();
+                nextActivity_Login();
+                return;
             }
             if(loginState > 0) {
                 login.setText("Failed");
@@ -114,11 +118,18 @@ public class LoginActivity extends Activity {
         @Override
         public void onClick(View v) {
             Users.setOfflineUser();
-            nextActivity();
+            nextActivity_Login();
         }
     };
 
-    private void nextActivity() {
+    private View.OnClickListener Click_Register = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            nextActivity_Register();
+        }
+    };
+
+    private void nextActivity_Login() {
         if(cmd != null) {
             cmd.stop();
         }
@@ -128,5 +139,16 @@ public class LoginActivity extends Activity {
         intent.setClass(LoginActivity.this, PictureActivity.class);
         startActivity(intent);
         LoginActivity.this.finish();
+    }
+
+    private void nextActivity_Register() {
+        if(cmd != null) {
+            cmd.stop();
+        }
+        updata = false;
+        handler.removeCallbacks(timer);
+        Intent intent = new Intent();
+        intent.setClass(LoginActivity.this, RegisterActivity.class);
+        startActivity(intent);
     }
 }

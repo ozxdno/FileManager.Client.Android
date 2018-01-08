@@ -66,8 +66,8 @@ public class Client_TCP {
         }
     }
     public void clear() {
-        ip = "192.168.191.1";
-        //ip = "172.24.136.41";
+        //ip = "192.168.191.1";
+        ip = "172.24.136.41";
         port = maxport;
         accept = null;
     }

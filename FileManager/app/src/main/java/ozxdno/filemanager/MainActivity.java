@@ -43,7 +43,7 @@ public class MainActivity extends Activity {
 
     private Thread jumpto = new Thread() {
         public void run() {
-            if(Users.getCurrentUser() != null && Users.getCurrentUser().getState() == Enums.UserState_Online) {
+            if(Users.getCurrentUser() != null) {
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this, PictureActivity.class);
                 startActivity(intent);

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/colorPink">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:layout_centerInParent="true">
+
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_centerInParent="true">
+
+                <TextView
+                    android:id="@+id/registerLoginNameLabel"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Login Name : "
+                    android:textSize="14sp"/>
+                <EditText
+                    android:id="@+id/registerLoginName"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="Your Login Name"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_centerInParent="true">
+
+                <TextView
+                    android:id="@+id/registerPasswordLabel"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Password : "
+                    android:textSize="14sp"/>
+                <EditText
+                    android:id="@+id/registerPassword"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="··········"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_centerInParent="true">
+
+                <TextView
+                    android:id="@+id/registerNickNameLabel"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Nick Name : "
+                    android:textSize="14sp"/>
+                <EditText
+                    android:id="@+id/registerNickName"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="Your Nick Name"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_centerInParent="true">
+
+                <TextView
+                    android:id="@+id/registerEmailLabel"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Email : "
+                    android:textSize="14sp"/>
+                <EditText
+                    android:id="@+id/registerEmail"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="Your Login Name"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_centerInParent="true">
+
+                <TextView
+                    android:id="@+id/registerPhoneLabel"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Phone : "
+                    android:textSize="14sp"/>
+                <EditText
+                    android:id="@+id/registerPhone"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="Phone Number"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_centerInParent="true">
+
+                <Button
+                    android:layout_width="310dp"
+                    android:layout_height="wrap_content"
+                    android:text="Register"
+                    android:textSize="14sp"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

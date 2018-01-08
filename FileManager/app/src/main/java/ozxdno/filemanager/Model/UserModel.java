@@ -23,6 +23,8 @@ public class UserModel {
      * pw
      */
     private String password;
+    private String phone;
+    private String email;
     /**
      * 00 - 未登录
      * 01 - 在线
